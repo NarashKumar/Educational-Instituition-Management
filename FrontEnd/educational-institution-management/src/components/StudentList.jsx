@@ -23,7 +23,7 @@ const StudentList = () => {
       dispatch({ type: 'SET_STUDENTS', payload: response.data });
       console.log(response.data);
     } catch (error) {
-      // Handle error
+      // Handle errors
       console.error('Error fetching students:', error);
     }
   };
