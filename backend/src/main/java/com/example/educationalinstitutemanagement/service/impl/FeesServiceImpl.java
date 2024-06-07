@@ -30,7 +30,7 @@ public class FeesServiceImpl implements FeesService {
 
         feesEntity.setStudent(student);
         student.setFees(feesEntity);
-//        student.setFeesId(feesEntity.getId());
+
 
         studentRepository.save(student);
 

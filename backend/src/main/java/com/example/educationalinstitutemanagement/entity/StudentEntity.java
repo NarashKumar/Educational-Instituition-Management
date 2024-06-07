@@ -22,9 +22,11 @@ public class StudentEntity {
     private String degree;
     private String course;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fees_id", referencedColumnName = "id")
-    @JsonProperty("fees")
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private FeesEntity fees;
+
+//    @Column(name = "fees_id")
+//    private Long feesId;
 
 }
