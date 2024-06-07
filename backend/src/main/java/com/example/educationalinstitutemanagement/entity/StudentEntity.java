@@ -22,11 +22,11 @@ public class StudentEntity {
     private String degree;
     private String course;
 
-    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private FeesEntity fees;
 
-//    @Column(name = "fees_id")
-//    private Long feesId;
+    @Column(name = "fees_id")
+    private Long feesId;
 
 }
