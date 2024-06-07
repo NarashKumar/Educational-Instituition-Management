@@ -25,17 +25,18 @@ public class FeesServiceImpl implements FeesService {
         StudentEntity student = studentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Student not found"));
 
-
-
-
+// Set the bidirectional relationship
         feesEntity.setStudent(student);
         student.setFees(feesEntity);
 
-
+        // Save the entities
+        FeesEntity savedFees = feesRepository.save(feesEntity);
         studentRepository.save(student);
 
-        return feesRepository.save(feesEntity);
+        return savedFees;
     }
+
+
 
     @Override
     public FeesEntity getFeesById(Long id) {

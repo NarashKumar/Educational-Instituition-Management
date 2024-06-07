@@ -16,8 +16,8 @@ public class FeesController {
         return feesService.addOrUpdateFees(studentId, feesEntity);
     }
 
-    @GetMapping("/student/{studentId}/getfees")
-    public FeesEntity getFeesById(@PathVariable Long studentId) {
-        return feesService.getFeesById(studentId);
+    @GetMapping("/student/{feesId}/getfees")
+    public FeesEntity getFeesById(@PathVariable Long feesId) {
+        return feesService.getFeesById(feesId);
     }
 }

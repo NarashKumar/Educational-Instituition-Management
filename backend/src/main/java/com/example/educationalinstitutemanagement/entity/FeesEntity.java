@@ -18,7 +18,7 @@ public class FeesEntity {
     private String balanceFees;
     private String description;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id", referencedColumnName = "id")
     @JsonBackReference
     private StudentEntity student;
