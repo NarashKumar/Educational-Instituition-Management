@@ -39,10 +39,19 @@ public class FeesServiceImpl implements FeesService {
 
 
 
+//    @Override
+//    public FeesEntity getFeesById(Long id) {
+//        return feesRepository.findById(id)
+//                .orElseThrow(() -> new RuntimeException("Fees not found for the student"));
+//    }
+
     @Override
-    public FeesEntity getFeesById(Long id) {
-        return feesRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Fees not found for the student"));
+    public FeesEntity getFeesByStudentId(Long studentId) {
+        FeesEntity fees = feesRepository.findByStudentId(studentId);
+        if (fees == null) {
+            throw new RuntimeException("Fees not found for the student");
+        }
+        return feesRepository.findByStudentId(studentId);
     }
-    }
+}
 
