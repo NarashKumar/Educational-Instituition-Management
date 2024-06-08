@@ -22,4 +22,9 @@ public class FeesEntity {
     @JoinColumn(name = "student_id", referencedColumnName = "id")
     @JsonBackReference
     private StudentEntity student;
+
+
+//    @Column(name = "student_id")
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    private Long studentId;
 }
