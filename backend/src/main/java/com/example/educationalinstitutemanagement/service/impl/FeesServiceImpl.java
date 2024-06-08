@@ -31,7 +31,10 @@ public class FeesServiceImpl implements FeesService {
 
         // Update the student with the fees entity and save the student entity
         FeesEntity savedFees = feesRepository.save(feesEntity);
+
+        // Update the student with the fees ID
         student.setFeesId(savedFees.getId());
+
         studentRepository.save(student);
 
         return savedFees;
