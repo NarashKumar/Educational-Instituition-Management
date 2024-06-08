@@ -96,7 +96,7 @@ const getStudentById = async () => {
 
   const [isEditing, setIsEditing] = useState(false);
   return (
-    <div className="bg-white m-8 shadow-md  rounded-lg overflow-hidden w-2/3">
+    <div className="bg-white m-8 shadow-md  rounded-lg overflow-hidden w-2/3 ms-44">
       <div className=" flex justify-between items-center bg-blue-500 text-white py-4 px-6">
         Personal Details
       
