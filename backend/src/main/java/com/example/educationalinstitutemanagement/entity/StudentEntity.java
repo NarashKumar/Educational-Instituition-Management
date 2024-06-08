@@ -1,6 +1,7 @@
 package com.example.educationalinstitutemanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -28,6 +29,7 @@ public class StudentEntity {
     private FeesEntity fees;
 
     @Column(name = "fees_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Long feesId;
 
 }
