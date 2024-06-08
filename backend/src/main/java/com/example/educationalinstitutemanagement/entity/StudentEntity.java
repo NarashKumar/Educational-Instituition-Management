@@ -1,7 +1,6 @@
 package com.example.educationalinstitutemanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,7 +21,9 @@ public class StudentEntity {
     private String degree;
     private String course;
 
-    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //fetch = FetchType.LAZY is not the case, its working perfectly
+    //fine but will add it later after research
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
     @JsonManagedReference
     private FeesEntity fees;
 
