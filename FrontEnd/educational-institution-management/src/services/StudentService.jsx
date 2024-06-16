@@ -34,8 +34,13 @@ class StudentService{
     }
 
     updateFeeDetails(id, data){
-        const updateFeeDetailsURL = `${FEES_API_BASE_URL}student/${id}/save`
-        return axios.post(updateFeeDetailsURL, data);
+        const updateFeeDetailsURL = `${FEES_API_BASE_URL}student/${id}/updatefees`
+        return axios.put(updateFeeDetailsURL, data);
+    }
+
+    addFeeDetails(id, data){
+        const addFeeDetailsURL = `${FEES_API_BASE_URL}student/${id}/addfees`
+        return axios.post(addFeeDetailsURL, data);
     }
 }
 

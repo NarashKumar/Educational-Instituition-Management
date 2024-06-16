@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { StudentContext } from './StudentProvider';
 import StudentService from '../services/StudentService';
+import { data } from 'autoprefixer';
 
 const feeSchema = z.object({
   alottedFees: z.string().regex(/^\d+(\.\d{1,2})?$/, 'Invalid amount'),
@@ -25,7 +26,13 @@ const FeePayment = () => {
   const getFeeDetails = async () => {
     try {
       const response = await StudentService.getFeeDetails(selectedStudent.id);
-      reset(response.data);
+      if(response.data){
+        reset(response.data);
+        setFeeExists(true);
+      } 
+      else {
+        setFeeExists(false);
+      }
     } catch (error) {
       console.error('Error fetching fee details:', error);
     }
@@ -37,25 +44,49 @@ const FeePayment = () => {
       getFeeDetails();
     }
   }, [selectedStudent]);
-  
+
+  const updateFeeDetails = async (data) => {
+    try {
+      await StudentService.updateFeeDetails(selectedStudent.id, data);
+      reset();
+      closeDialogUpdate();
+      alert('Fee details updated successfully');
+      getFeeDetails();
+    } catch (error) {
+      console.log(error);
+      alert('An error occurred while updating the fee details');
+    }
+  };
+
+  const addFeeDetails = async (data) => {
+    try {
+      await StudentService.addFeeDetails(selectedStudent.id, data);
+      reset();
+      closeDialogUpdate();
+      alert('Fee details added successfully');
+      getFeeDetails();
+    } catch (error) {
+      console.log(error);
+      alert('An error occurred while adding the fee details');
+    }
+  };
+
   const onSubmit = async (data) => {
     if (confirmed) {
-      try {
-        await StudentService.updateFeeDetails(selectedStudent.id, data);
-        reset();
-        closeDialogUpdate();
-        alert('Fee details updated successfully');
-        getFeeDetails();
-      } catch (error) {
-        console.log(error);
-        alert('An error occurred while updating the fee details');
+      if (feeExists) {
+        updateFeeDetails(data);
+      } else {
+        addFeeDetails(data);
       }
     }
     console.log(data);
   };
 
+  
 
-  //Dialog Box
+
+  //Dialog Box and menus
+  const [feeExists, setFeeExists] = useState(false);
   const [showDialogUpdate, setShowDialogUpdate] = useState(false);
   const [showDialogDiscard, setShowDialogDiscard] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
@@ -88,7 +119,7 @@ const FeePayment = () => {
     closeDialogDiscard();
   };
 
-
+ 
   
 
   return (
@@ -172,18 +203,33 @@ const FeePayment = () => {
           </div>
         )}
 
-        <button
-          className="mt-4 w-1/3 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-          type="submit"
-          onClick={() => {
-            if (isValid) {
-              openDialogUpdate();
-            }
-          }}
-        >
-          Update
-        </button>
+        {feeExists ? (
+          <button
+            className="mt-4 w-1/3 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            type="button"
+            onClick={() => {
+              if (isValid) {
+                openDialogUpdate();
+              }
+            }}
+          >
+            Update
+          </button>
+        ) : (
+          <button
+            className="mt-4 w-1/3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            type="button"
+            onClick={() => {
+              if (isValid) {
+                openDialogUpdate();
+              }
+            }}
+          >
+            Add
+          </button>
+        )}
 
+        
         <button
           type="button"
           onClick={() => {
