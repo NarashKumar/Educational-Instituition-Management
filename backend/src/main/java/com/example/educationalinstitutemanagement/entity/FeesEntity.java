@@ -24,7 +24,10 @@ public class FeesEntity {
     private StudentEntity student;
 
 
-//    @Column(name = "student_id")
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//    private Long studentId;
+    @JsonProperty("student_id")
+    public Long getStudentEntityId() {
+        return student != null ? student.getId() : null;
+    }
+
+
 }

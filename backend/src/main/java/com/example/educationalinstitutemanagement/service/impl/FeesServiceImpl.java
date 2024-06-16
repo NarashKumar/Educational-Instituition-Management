@@ -7,6 +7,8 @@ import com.example.educationalinstitutemanagement.repository.StudentRepository;
 import com.example.educationalinstitutemanagement.service.FeesService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,7 +23,7 @@ public class FeesServiceImpl implements FeesService {
 
     @Transactional
     @Override
-    public FeesEntity addOrUpdateFees(Long id, FeesEntity feesEntity) {
+    public FeesEntity addFees(Long id, FeesEntity feesEntity) {
         StudentEntity student = studentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Student not found"));
 
@@ -40,14 +42,6 @@ public class FeesServiceImpl implements FeesService {
         return savedFees;
     }
 
-
-
-//    @Override
-//    public FeesEntity getFeesById(Long id) {
-//        return feesRepository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Fees not found for the student"));
-//    }
-
     @Override
     public FeesEntity getFeesByStudentId(Long studentId) {
         FeesEntity fees = feesRepository.findByStudentId(studentId);
@@ -55,6 +49,13 @@ public class FeesServiceImpl implements FeesService {
             throw new RuntimeException("Fees not found for the student");
         }
         return feesRepository.findByStudentId(studentId);
+    }
+
+    public FeesEntity updateFees(Long id, FeesEntity feesEntity) {
+        if(feesRepository.findById(id).isPresent()) {
+            return feesRepository.save(feesEntity);
+        }
+        return new ResponseEntity<FeesEntity>(HttpStatus.NOT_FOUND).getBody();
     }
 }
 
