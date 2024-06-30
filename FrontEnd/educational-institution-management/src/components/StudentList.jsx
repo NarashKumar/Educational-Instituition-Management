@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 const StudentList = () => {
   const [students, setStudents] = useState([]);
-  const{dispatch} = useContext(StudentContext);
+  const {dispatch} = useContext(StudentContext);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
 
@@ -29,10 +29,10 @@ const StudentList = () => {
   };
 
   useEffect(() => {
-  
     fetchStudents();
   }, []);
 
+  
   const handleDeleteClick = (id) => {
     setDeleteId(id);
     setShowDeleteDialog(true);

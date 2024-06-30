@@ -25,22 +25,7 @@ const AddStudent = () => {
     }
   );
 
-  // const clearForm = () => {
-  //   return {
-  //     id: "",
-  //     name: "",
-  //     address: "",
-  //     email: "",
-  //     phoneNumber: "",
-  //     dob: "",
-  //     age: "",
-  //     gender: "",
-  //     degree: "",
-  //     course: "",
-  //   };
-  // };
-
-  // const [student, setStudent] = useState(clearForm());
+  
   const [showDialog, setShowDialog] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const navigate = useNavigate();

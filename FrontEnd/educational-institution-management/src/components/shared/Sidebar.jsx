@@ -1,8 +1,17 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import PropTypes from 'prop-types'
 
-const Sidebar = ( { items }) => {
+
+const items = [
+  { label: 'Dashboard', path: '/dashboard' },
+  {label: 'Personal Details', path: '/personal-details'},
+  { label: 'Fee Details', path: '/fee-payment' },
+  { label: 'Course List', path: '/course-list' },
+  { label: 'Grade / Mark & Credit', path: '/grade-credit' },
+  // Add other sidebar items as needed
+];
+
+const Sidebar = () => {
   return (
     <>
   
@@ -17,16 +26,6 @@ const Sidebar = ( { items }) => {
       </div>
     
    </>
-  )
-}
-
-//props validation
-Sidebar.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      path: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired
-    })
   )
 }
 

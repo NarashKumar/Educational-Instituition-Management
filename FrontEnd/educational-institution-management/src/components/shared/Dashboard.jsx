@@ -1,5 +1,5 @@
 import React from 'react'
-import StudentDetails from './StudentDetails'
+
 
 // const student = {
 //   name: 'John Doe',

@@ -4,7 +4,6 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { StudentContext } from './StudentProvider';
 import StudentService from '../services/StudentService';
-import { data } from 'autoprefixer';
 
 const feeSchema = z.object({
   alottedFees: z.string().regex(/^\d+(\.\d{1,2})?$/, 'Invalid amount'),
