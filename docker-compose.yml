@@ -9,6 +9,7 @@ services:
     depends_on:
       - spring-boot
     environment:
+      # - NODE_ENV=development
       - VITE_API_URL=http://spring-boot:8080
   spring-boot:
     build: ./backend
